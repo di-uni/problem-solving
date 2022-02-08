@@ -7,15 +7,15 @@ class Solution(object):
         
         # First trial
 
-        # nums_dict = {}
+        nums_dict = {}
         
-        # for num in nums:
-        #     if num in nums_dict:
-        #         return True
-        #     else:
-        #         nums_dict[num] = 0
+        for num in nums:
+            if num in nums_dict:
+                return True
+            else:
+                nums_dict[num] = 0
         
-        # return False
+        return False
     
     # -------------------------------------------------
         # Second trial (fastest)
@@ -29,4 +29,4 @@ class Solution(object):
     # -------------------------------------------------
         # Third trial refer to other's solution
 
-        # return len(nums) > len(set(nums))
+        return len(nums) > len(set(nums))

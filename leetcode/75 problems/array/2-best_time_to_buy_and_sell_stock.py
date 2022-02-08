@@ -7,12 +7,12 @@ class Solution(object):
 
         # First trial (Time Limit Exceeded)
         
-        # maxProfit = 0
+        maxProfit = 0
         
-        # for i in range(len(prices)-1):
-        #     for j in range(i + 1, len(prices)):
-        #         maxProfit = max(maxProfit, prices[j] - prices[i])
-        # return max(maxProfit, 0)
+        for i in range(len(prices)-1):
+            for j in range(i + 1, len(prices)):
+                maxProfit = max(maxProfit, prices[j] - prices[i])
+        return max(maxProfit, 0)
                 
 
     # -------------------------------------------------
