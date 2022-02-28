@@ -1,5 +1,5 @@
-# # First Trial
-# # Solved
+# First Trial
+# Solved
 
 N = int(input())
 ans = 0

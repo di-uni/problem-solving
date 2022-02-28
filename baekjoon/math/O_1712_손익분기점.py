@@ -18,6 +18,7 @@ else:
 
 
 # Second Trial referred to other's solution
+# 몫(//)을 이용하면 깔끔한 정리 가능
 
 A, B, C = map(int, input().split())
 
