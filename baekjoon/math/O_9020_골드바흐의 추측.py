@@ -53,7 +53,7 @@ for _ in range(T):
 
 # =========================
 # Other's solution
-# Solved (메모리 31376 KB, 시간 560ms)
+# Solved (메모리 31376 KB, 시간 560 ms)
 
 max_n = 10000
 nums = {2} | {x for x in range(3, max_n + 1) if x % 2 == 1}
