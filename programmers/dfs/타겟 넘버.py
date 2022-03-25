@@ -23,6 +23,7 @@ def solution(numbers, target):
 
 # ==============================
 # Other's Solution (1)
+# 끝까지 깔끔하게 처리
 
 def solution(numbers, target):
     if not numbers and target == 0 :
@@ -34,6 +35,13 @@ def solution(numbers, target):
 
 
 # Other's Solution (2)
+# Using product
+
+# product: 데카르트 곱을 표현할 때 사용하는 method, 두 개 이상의 리스트의 모든 조합을 구할 때 사용
+# ex) 
+#    list = ["012", "abc", "!@#"]
+#    pd = list(product(*_list))
+#    [('0', 'a', '!'), ('0', 'a', '@'), ('0', 'b', '!'), ('0', 'b', '@'), ('1', 'a', '!'), ('1', 'a', '@'), ('1', 'b', '!'), ('1', 'b', '@')]
 
 from itertools import product
 def solution(numbers, target):

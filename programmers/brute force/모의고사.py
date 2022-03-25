@@ -63,6 +63,8 @@ def solution(answers):
         cycle([2,1,2,3,2,4,2,5]),
         cycle([3,3,1,1,2,2,4,4,5,5]),
     ]
+    # cycle:무한히 반복되는 이터레이터, next를 호출하여 요청
+
     scores = [0, 0, 0]
     for num in answers:
         for i in range(3):
