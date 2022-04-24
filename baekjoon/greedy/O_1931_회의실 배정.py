@@ -1,3 +1,6 @@
+# First Trial
+# Wrong Answer
+
 N = int(input())
 meetings = []
 
@@ -60,3 +63,29 @@ if False in visited:
         print(sub)
 
 print(max_cnt)
+
+
+# ===================================
+# Other's Solution
+# 종료 시간이 빨라야 한다는 점을 이용
+# Solved (메모리 46496 KB, 시간 4172 ms)
+
+N = int(input())
+meetings = []
+
+for _ in range(N):
+    start, end = map(int, input().split())
+    meetings.append([start, end])
+
+meetings.sort(key = lambda x: x[0])
+meetings.sort(key = lambda x: x[1])
+
+cnt = 1
+end = meetings[0][1]
+
+for i in range(1, N):
+    if meetings[i][0] >= end:
+        cnt += 1
+        end = meetings[i][1]
+
+print(cnt)
