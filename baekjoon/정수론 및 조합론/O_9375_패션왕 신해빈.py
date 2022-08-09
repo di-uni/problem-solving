@@ -18,7 +18,7 @@ for _ in range(T):
 
 
 # ===================================
-# Other's solution (1)
+# Other's solution 
 # Counter 사용
 # Solved (메모리 32420 KB, 시간 116 ms)
 
