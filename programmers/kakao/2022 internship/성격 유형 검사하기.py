@@ -30,7 +30,31 @@ def solution(survey, choices):
 
 
 
+# 개선
+from collections import defaultdict
 
+def solution(survey, choices):
+    types = ['RT', 'CF', 'JM', 'AN']
+    result = defaultdict(int)
+    answer = ''
+    
+    for choice, score in zip(survey, choices):
+        if score < 4:
+            result[choice[0]] += 4 - score
+        if score > 4:
+            result[choice[1]] += score - 4
+    
+    for ty in types:
+        res_ty = [0, 0]
+        if ty[0] in result:
+            res_ty[0] = result[ty[0]]
+        if ty[1] in result:
+            res_ty[1] = result[ty[1]]
+        if res_ty[0] < res_ty[1]:
+            answer += ty[1]
+        else: 
+            answer += ty[0]
+    return answer
 
 # ======================================
 # Other's solution 
