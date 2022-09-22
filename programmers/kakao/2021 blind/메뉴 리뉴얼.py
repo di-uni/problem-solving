@@ -15,7 +15,7 @@ def solution(orders, course):
         # print(course_dict)
         if course_dict:
             max_value = max(course_dict.values())
-            if max_value > 1:
+            if max_value >= 2:
                 answer += [key for key, value in course_dict.items() if value == max_value]
                 # print(answer)
         course_dict = defaultdict(int)
