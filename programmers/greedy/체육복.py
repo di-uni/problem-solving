@@ -43,3 +43,27 @@ def solution(n, lost, reserve):
             
     
     return answer
+
+
+# Third Trial
+# Test Passed 
+
+def solution(n, lost, reserve):
+    selfcover = set(lost) & set(reserve)
+    for s in selfcover:
+        lost.remove(s)
+        reserve.remove(s)
+    
+    answer = n - len(lost)
+    
+    lost.sort()
+    reserve.sort()
+    for l in lost:
+        if l - 1 in reserve:
+            answer += 1
+            reserve.remove(l - 1)
+        elif l + 1 in reserve:
+            answer += 1
+            reserve.remove(l + 1)
+    
+    return answer
