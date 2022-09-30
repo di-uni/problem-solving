@@ -70,3 +70,52 @@ class Solution(object):
             return dp[i][j]
         
         return subsequence(n-1, m-1)
+
+
+# 2022.09.30
+# First Trial
+# Time Limit Exceeded
+
+class Solution:
+    def longestCommonSubsequence(self, text1: str, text2: str) -> int:
+        max_common = 0
+        short, long = text1, text2
+        if len(text2) < len(text1):
+            short, long = text2, text1
+        # print(short, long)
+        dp = [[0]*(len(short)) for _ in range(len(long))]
+        
+        # print(dp)
+        
+        for i in range(len(short)):
+            for j in range(len(long)):
+                if short[i] == long[j]:
+                    # print("j, i: ", j, i)
+                    dp[j][i] += 1
+                    max_common = max(max_common, dp[j][i])
+                    for x in range(i+1, len(short)):
+                        for y in range(j+1, len(long)):
+                            dp[y][x] = max(dp[y][x], dp[j][i])
+                    # print(dp)
+                    # break
+        # print(dp)
+        
+        return max_common
+
+
+# =================================================================
+# Other's Solution
+# Using dp
+# https://leetcode.com/problems/longest-common-subsequence/discuss/351689/JavaPython-3-Two-DP-codes-of-O(mn)-and-O(min(m-n))-spaces-w-picture-and-analysis
+
+# Runtime: faster than 40.44%, Memory Usage: less than 79.26%
+
+class Solution:
+    def longestCommonSubsequence(self, text1: str, text2: str) -> int:
+        dp = [[0]*(len(text2) + 1) for _ in range(len(text1) + 1)]
+    
+        for i, c in enumerate(text1):
+            for j, d in enumerate(text2):
+                dp[i+1][j+1] = dp[i][j] + 1 if c == d else max(dp[i][j+1], dp[i+1][j])
+        
+        return dp[-1][-1]

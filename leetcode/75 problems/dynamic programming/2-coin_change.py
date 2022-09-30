@@ -1,62 +1,54 @@
-class Solution(object):
-    def coinChange(self, coins, amount):
-        """
-        :type coins: List[int]
-        :type amount: int
-        :rtype: int
-        """
+# 2022.09.30
+# First Trial
+# Using bfs with heap
+# Test Passed 
+# Runtime: faster than 29.72%, Memory Usage: less than 26.61%
 
-        # First trial
-        # Wrong answer (only consider specific cases)
+from heapq import heappush, heappop
+from typing import List
 
-        min_count = float("inf")
-        coins.sort()
+class Solution:
+    def coinChange(self, coins: List[int], amount: int) -> int:
+        coins.sort(reverse=True)
+        maxNum = -1
+    
+        heap = []
+        heappush(heap, (0, 0))
+        coinSumDict = {}
         
-        for coin in range(len(coins) - 1, -1, -1):
-            count = 0
-            temp = amount
-
-            for i in range(coin, -1, -1):
-                count += temp // coins[i]
-                temp = temp % coins[i]
-                if temp == 0:
-                    min_count = min(min_count, count)
-                    continue
-        
-        if min_count == float("inf"):
-            return -1
-        else:
-            return min_count
-
-    # -----------------------------------------------------------------
-        # Second trial
-        # Time Limit Exceeded (15/188)
-
-    def __init__(self):
-        self.memo = {}
-        self.minCount = float("inf")
-        
-    def coinChange(self, coins, amount):
-        if amount == 0:
-            return 0
-        self.memo[amount] = 0
-        
-        def dp(n):
+        while heap:
+            coinCnt, coinSum = heappop(heap)
+            
+            if coinSum in coinSumDict:
+                continue
+            coinSumDict[coinSum] = coinCnt
+            
+            if coinSum == amount:
+                maxNum = max(maxNum, coinCnt)
+                return coinCnt
+            if coinSum > amount:
+                continue
             for coin in coins:
-                if n > coin:
-                    if n-coin not in self.memo:
-                        self.memo[n - coin] = self.memo[n] + 1
-                    else:
-                        self.memo[n - coin] = min(self.memo[n - coin], self.memo[n] + 1)
-                elif n == coin:
-                    self.minCount = min(self.minCount, self.memo[n] + 1)
-                    # print(self.minCount, self.memo[n] + 1)
-                else:
-                    continue
-                dp(n - coin)
-        
-        dp(amount)
-        # print(self.memo)
-        if self.minCount == float("inf"):
+                heappush(heap, (coinCnt + 1, coinSum - coin))
+            
+        return maxNum
+
+
+
+# =================================================================
+# Other's Solution
+# Using dp
+# Runtime: faster than 57.60%, Memory Usage: less than 40.43% 
+
+from heapq import heappush, heappop
+class Solution:
+    def coinChange(self, coins: List[int], amount: int) -> int:
+        dp = [0] + [float('inf') for i in range(amount)]
+        for i in range(1, amount + 1):
+            for coin in coins:
+                if i - coin >= 0:
+                    dp[i] = min(dp[i], dp[i-coin] + 1)
+        if dp[-1] == float('inf'):
             return -1
-        return self.minCount
+    
+        return dp[-1]
