@@ -1,16 +1,11 @@
+# First Trial
+# Test Failed (Error in test case: nums = [1, 2] k = 2)
+
 import heapq
+from typing import List
 
-class Solution(object):
-    def topKFrequent(self, nums, k):
-        """
-        :type nums: List[int]
-        :type k: int
-        :rtype: List[int]
-        """
-        
-        # First trial
-        # Error in test case: nums = [1, 2] k = 2
-
+class Solution:
+    def topKFrequent(self, nums: List[int], k: int) -> List[int]:
         dict = {}
         reverse_dict = {}
         ans = []
@@ -38,13 +33,16 @@ class Solution(object):
             
         
         return ans
-    # -----------------------------------------------------------------
-        # Second trial refer to DP lecture
-        # Bottom-up (Tabulation)
 
-        # Time Complexity: O(n + k log n) /   Runtime: faster than 98.29%
-        # Space Complexity: O(n) /   Memory Usage: less than 55.32%
+# -----------------------------------------------------------------
+# Second trial refer to DP lecture
+# Bottom-up (Tabulation)
 
+# Time Complexity: O(n + k log n) /   Runtime: faster than 98.29%
+# Space Complexity: O(n) /   Memory Usage: less than 55.32%
+
+class Solution:
+    def topKFrequent(self, nums: List[int], k: int) -> List[int]:
         dict = {}
         reverse_dict = {}
         ans = []
@@ -69,4 +67,51 @@ class Solution(object):
         
         return ans
             
-            
+
+# Third Trial
+# 2022.09.30
+# Test Passed
+# Runtime: faster than 37.32%, Memory Usage: less than 47.95%
+
+from heapq import heappush, heappop
+from collections import defaultdict
+
+class Solution:
+    def topKFrequent(self, nums: List[int], k: int) -> List[int]:
+        ans = []
+        dict = defaultdict(int)
+        for num in nums:
+            dict[num] += 1
+        
+        heap = []
+        for num in dict:
+            heappush(heap, (-dict[num], num))
+        
+        for i in range(k):
+            cnt, num = heappop(heap)
+            ans.append(num)
+        
+        return ans
+
+
+
+# =================================================================
+# Other's Solution
+# Clean code, using Counter
+# Runtime: faster than 49.53%, Memory Usage: less than 71.44%
+
+from heapq import heapify, heappop
+from collections import Counter
+
+class Solution:
+    def topKFrequent(self, nums: List[int], k: int) -> List[int]:
+        cnt = Counter(nums)
+        maxHeap = [[-freq, num] for num, freq in cnt.items()]
+        heapify(maxHeap)
+        
+        ans = []
+        for i in range(k):
+            _, num = heappop(maxHeap)
+            ans.append(num)
+        
+        return ans

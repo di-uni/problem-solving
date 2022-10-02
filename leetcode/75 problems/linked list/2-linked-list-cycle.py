@@ -3,6 +3,7 @@
 # Test Passed : ListNode의 val을 변경시킴, 이를 변경시키지 않는 해결방안 찾아보기
 
 # Definition for singly-linked list.
+from typing import Optional
 class ListNode:
     def __init__(self, x):
         self.val = x
