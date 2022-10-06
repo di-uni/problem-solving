@@ -22,3 +22,19 @@ class Solution:
             curNode = nextNode
             
         return prevNode
+
+# 2022.10.06
+# Second Trial
+# Test Passed
+# Runtime: faster than 90.23%, Memory Usage: less than 55.07%
+
+class Solution:
+    def reverseList(self, head: Optional[ListNode]) -> Optional[ListNode]:
+        prev, cur = None, head
+        
+        while cur:
+            next = cur.next
+            cur.next = prev
+            prev, cur = cur, next
+        
+        return prev

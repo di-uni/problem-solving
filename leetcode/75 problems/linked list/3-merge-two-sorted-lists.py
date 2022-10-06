@@ -43,6 +43,31 @@ class Solution:
         return head        
         
 
+# 2022.10.06
+# Second Trial
+# Test Passed 
+# Runtime: faster than 24.67%, Memory Usage: less than 32.63%
+
+class Solution:
+    def mergeTwoLists(self, list1: Optional[ListNode], list2: Optional[ListNode]) -> Optional[ListNode]:
+        root = sortedList = ListNode()
+        
+        while list1 and list2:
+            if list1.val <= list2.val:
+                sortedList.next = list1
+                list1 = list1.next
+            else:
+                sortedList.next = list2
+                list2 = list2.next
+            sortedList = sortedList.next
+            
+        if list1:
+            sortedList.next = list1
+        if list2:
+            sortedList.next = list2
+        
+        return root.next
+
 # =================================================================
 # Other's Solution
 # Clean code
