@@ -26,3 +26,9 @@ class Solution:
                 break
         
         return node
+
+
+# =================================================================
+# Other's Solution
+# Using recursive
+# Runtime: faster than 94.23%, Memory Usage: less than 80.26%

@@ -35,6 +35,7 @@ class Solution:
 # Using recursive
 # Runtime: faster than 94.23%, Memory Usage: less than 80.26%
 
+class Solution:
     def isValidBST(self, root: Optional[TreeNode], floor=float("-inf"), ceiling=float("inf")) -> bool:
         if not root:
             return True
