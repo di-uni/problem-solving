@@ -1,13 +1,8 @@
-class Solution(object):
-    def climbStairs(self, n):
-        """
-        :type n: int
-        :rtype: int
-        """
-        
-        # First trial
-        # Time Limit Exceeded
+# First trial
+# Time Limit Exceeded
 
+class Solution:
+    def climbStairs(self, n: int) -> int:
         # fibonacci
         
         dp = {}
@@ -20,12 +15,14 @@ class Solution(object):
         
         return fib(n)
 
-    # -----------------------------------------------------------------
-        # REVISED First trial refer to Third trial
-       
-        # Time Complexity: O(n) /   Runtime: faster than 58.30%
-        # Space Complexity: O(n) /   Memory Usage: less than 66.42%
+# -----------------------------------------------------------------
+# REVISED First trial refer to Third trial
 
+# Time Complexity: O(n) /   Runtime: faster than 58.30%
+# Space Complexity: O(n) /   Memory Usage: less than 66.42%
+
+class Solution:
+    def climbStairs(self, n: int) -> int:
         dp = {}
         dp[1] = 1
         dp[2] = 2
@@ -36,40 +33,47 @@ class Solution(object):
         
         return fib(n)
 
-    # -----------------------------------------------------------------
-        # Second trial refer to other's solution
-        # Time Limit Exceeded
 
+# -----------------------------------------------------------------
+# Second trial refer to other's solution
+# Time Limit Exceeded
+class Solution:
+    def climbStairs(self, n: int) -> int:
         if n == 1:
             return 1
         if n == 2:
             return 2
         return self.climbStairs(n-1) + self.climbStairs(n-2)
 
-    # -----------------------------------------------------------------
-        # Third trial refer to other's solution
-        # Dictionary memoization
-        
-        # Time Complexity: O(n) /   Runtime: faster than 81.62%
-        # Space Complexity: O(n) /   Memory Usage: less than 37.82%
-    
+
+# -----------------------------------------------------------------
+# Third trial refer to other's solution
+# Dictionary memoization
+
+# Time Complexity: O(n) /   Runtime: faster than 81.62%
+# Space Complexity: O(n) /   Memory Usage: less than 37.82%
+
+class Solution:
     def __init__(self):
         self.dic = {}
         self.dic[1] = 1
         self.dic[2] = 2
 
-    def climbStairs(self, n):
+    def climbStairs(self, n: int) -> int:
         if n not in self.dic:
             self.dic[n] = self.climbStairs(n-1) + self.climbStairs(n-2)
         return self.dic[n]
 
-    # -----------------------------------------------------------------
-        # Forth trial refer to other's solution
-        # Tabulation
-        
-        # Time Complexity: O(n) /   Runtime: faster than 81.62%
-        # Space Complexity: O(n) /   Memory Usage: less than 37.82%
 
+# -----------------------------------------------------------------
+# Forth trial refer to other's solution
+# Tabulation
+
+# Time Complexity: O(n) /   Runtime: faster than 81.62%
+# Space Complexity: O(n) /   Memory Usage: less than 37.82%
+
+class Solution:
+    def climbStairs(self, n: int) -> int:
         if n <= 2:
             return n
         
@@ -80,3 +84,19 @@ class Solution(object):
             ans[i] = ans[i - 1] + ans[i - 2]
         # print(ans)
         return ans[n - 1]
+
+
+
+
+# 2022.10.13
+# First Trial
+# Test Passed
+# Runtime: faster than 34.58%, Memory Usage: less than 57.02%
+
+class Solution:
+    def climbStairs(self, n: int) -> int:
+        dp = [0, 1]
+        for i in range(2, n + 2):
+            dp.append(dp[i - 1] + dp[i - 2])
+        
+        return dp[n + 1]
