@@ -37,6 +37,7 @@ class Solution:
 # -----------------------------------------------------------------
 # Second trial refer to other's solution
 # Time Limit Exceeded
+
 class Solution:
     def climbStairs(self, n: int) -> int:
         if n == 1:
@@ -100,3 +101,17 @@ class Solution:
             dp.append(dp[i - 1] + dp[i - 2])
         
         return dp[n + 1]
+
+
+# =================================================================
+# Other's Solution
+# Space Optimized
+# Runtime: faster than 5.31%, Memory Usage: less than 95.96%
+
+class Solution:
+    def climbStairs(self, n: int) -> int:
+        a = b = 1
+        for _ in range(2, n + 1):
+            a, b = b, a + b
+        
+        return b

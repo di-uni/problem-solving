@@ -58,4 +58,21 @@ class Solution:
 # =================================================================
 # Other's Solution
 # Using recursive
-# Runtime: faster than 94.23%, Memory Usage: less than 80.26%
+# Runtime: faster than 95.39%, Memory Usage: less than 14.57%
+
+class Solution:
+    def floodFill(self, image: List[List[int]], sr: int, sc: int, color: int) -> List[List[int]]:
+        m = len(image)
+        n = len(image[0])
+        target_color = image[sr][sc]
+        
+        def traverse(x, y):
+            if not(0 <= x < m and 0 <= y < n) or image[x][y] != target_color:
+                return
+            image[x][y] = color
+            [traverse(x + i, y + j) for (i, j) in ((0, 1), (1, 0), (0, -1), (-1, 0))]
+            
+        if target_color != color:
+            traverse(sr, sc)
+            
+        return image

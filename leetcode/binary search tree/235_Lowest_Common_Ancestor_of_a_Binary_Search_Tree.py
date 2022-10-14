@@ -29,6 +29,31 @@ class Solution:
 
 
 # =================================================================
-# Other's Solution
-# Using recursive
-# Runtime: faster than 94.23%, Memory Usage: less than 80.26%
+# Other's Solution (1)
+# Clean code
+# Runtime: faster than 32.43%, Memory Usage: less than 67.74%
+
+class Solution:
+    def lowestCommonAncestor(self, root: 'TreeNode', p: 'TreeNode', q: 'TreeNode') -> 'TreeNode':
+        while root:
+            if p.val < root.val > q.val:
+                root = root.left
+            elif p.val > root.val < q.val:
+                root = root.right
+            else:
+                return root
+
+
+# =================================================================
+# Other's Solution (2)
+# Clean code
+# Runtime: faster than 12.91%, Memory Usage: less than 23.05%
+    
+class Solution:
+    def lowestCommonAncestor(self, root: 'TreeNode', p: 'TreeNode', q: 'TreeNode') -> 'TreeNode':
+        while (root.val - p.val) * (root.val - q.val) > 0:
+            if p.val < root.val: root = root.left
+            else: root = root.right
+            
+        return root
+        

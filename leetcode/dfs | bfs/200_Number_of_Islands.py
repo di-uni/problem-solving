@@ -34,6 +34,45 @@ class Solution:
 
 
 # =================================================================
-# Other's Solution
-# Using recursive
-# Runtime: faster than 94.23%, Memory Usage: less than 80.26%
+# Other's Solution (1)
+# visited 필요 없음!
+# Runtime: faster than 15.92%, Memory Usage: less than 64.22%
+
+class Solution:
+    def numIslands(self, grid: List[List[str]]) -> int:
+        m = len(grid)
+        n = len(grid[0])
+        ans = 0
+        
+        def dfs(i, j):
+            stack = [(i, j)]
+            while stack:
+                x, y = stack.pop()
+                if 0 <= x < m and 0 <= y < n and grid[x][y] == "1":
+                    grid[x][y] = "0"
+                    stack += [(x-1, y), (x+1, y), (x, y-1), (x, y+1)]
+        
+        for i in range(m):
+            for j in range(n):
+                if grid[i][j] == "1":
+                    dfs(i, j)
+                    ans += 1
+        
+        return ans
+
+
+# =================================================================
+# Other's Solution (2)
+# Concise
+# Runtime: faster than 67.68%, Memory Usage: less than 48.14%
+
+class Solution:
+    def numIslands(self, grid: List[List[str]]) -> int:
+        def sink(i, j):
+            if 0 <= i < len(grid) and 0 <= j < len(grid[i]) and grid[i][j] == '1':
+                grid[i][j] = '0'
+                list(map(sink, (i+1, i-1, i, i), (j, j, j+1, j-1)))
+                return 1
+            return 0
+        return sum(sink(i, j) for i in range(len(grid)) for j in range(len(grid[i])))
+
