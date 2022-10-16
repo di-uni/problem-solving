@@ -1,11 +1,9 @@
-class Solution(object):
-    def twoSum(self, nums, target):
-        """
-        :type nums: List[int]
-        :type target: int
-        :rtype: List[int]
-        """
 # [Wrong Answer] in [-3,4,3,90] 0   
+
+from typing import List
+
+class Solution:
+    def twoSum(self, nums: List[int], target: int) -> List[int]:
         nums_index = [[x, i] for i,x in enumerate(nums)]
         new_nums = filter(lambda x: x[0] <= target, nums_index)
         
@@ -20,6 +18,8 @@ class Solution(object):
 # -------------------------------------------------
 # First trial
 
+class Solution:
+    def twoSum(self, nums: List[int], target: int) -> List[int]:
         for i in range(len(nums) - 1):
             for j in range(i + 1, len(nums)):
                 if nums[i] + nums[j] == target:
@@ -28,6 +28,9 @@ class Solution(object):
 
 # -------------------------------------------------
 # Second trial refer to other's solution 
+
+class Solution:
+    def twoSum(self, nums: List[int], target: int) -> List[int]:
         seen = {}
         for i, n in enumerate(nums):
             m = target - n
@@ -35,4 +38,19 @@ class Solution(object):
                 return(seen[m], i)
             else:
                 seen[n] = i
+
+
+# 2022.10.16
+# First trial
+# Test Passed
+# Runtime: faster than 53.00%, Memory Usage: less than 9.15%
+
+class Solution:
+    def twoSum(self, nums: List[int], target: int) -> List[int]:
+        seen = {}
+        for i, n in enumerate(nums):
+            if n not in seen:
+                seen[target - n] = i
+            else:
+                return [seen[n], i]
                 
